@@ -31,8 +31,8 @@ func _on_Ball_bounce(ball, bouncedFrom):
 	print("Ball is object: ", ball)	
 	print("Ball bounced from object: ", bouncedFrom.collider)	
 	print("Is object MyBlock: ", bouncedFrom.collider is MyBlock)
-	print("TypeOf: ", typeof(bouncedFrom.collider))	
-	ball.reactToBounce(bouncedFrom)
+	print("TypeOf: ", typeof(bouncedFrom.collider))			
+	ball.setVelocity(ball.velocity.bounce(bouncedFrom.normal))
 	if bouncedFrom.collider.has_meta("isBlock"):
 		print("And it should be erased!")
 		bouncedFrom.collider.setSumtin()
