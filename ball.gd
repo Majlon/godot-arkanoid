@@ -12,7 +12,6 @@ const MAX_SPEED = 500
 func _ready():
 	pass # Replace with function body.
 
-
 func setVelocity(vector):
 	self.velocity = vector
 
@@ -23,20 +22,8 @@ func _physics_process(delta):
 		print(collision_info.collider.get_class())
 		emit_signal("bounce",self, collision_info)
 
-func reactToBounce(collision_info):
-	velocity = velocity.bounce(collision_info.normal)
-	var grtr = Greeter.new()
-	grtr.saySomething()
-	if(abs(velocity.x)< MAX_SPEED):
-		velocity.x = velocity.x * 1.02
-		
-	if(abs(velocity.y) < MAX_SPEED):
-		velocity.y = velocity.y * 1.02
-		
-	#grtr.saySomething()
-	print('velocity X is: ', velocity.x)
-	print('velocity Y is: ', velocity.y)
+#func reactToBounce(collision_info):
+	#velocity = velocity.bounce(collision_info.normal)		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
