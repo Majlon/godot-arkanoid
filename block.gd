@@ -2,11 +2,9 @@ extends StaticBody2D
 
 class_name MyBlock
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var powerup = null
+var health = 1
+var destroyed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,10 +14,11 @@ func _ready():
 func setColor(_color):
 	$ColorRect.color = _color
 
+func setPowerup(powerup_name):
+	self.powerup = powerup_name
+
+func dealDamage(amount):
+	self.health -= amount
 
 func setSumtin():
 	print("Sumtin was set")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
