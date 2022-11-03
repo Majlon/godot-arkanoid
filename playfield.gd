@@ -4,7 +4,7 @@ export(PackedScene) var block_scene
 export(PackedScene) var ball_scene
 export(PackedScene) var powerup_scene
 
-var COLORS = [Color.chartreuse, Color.yellow ,Color.blue,Color.red, Color.magenta, Color.deeppink]
+var COLORS = [Color.chartreuse, Color.yellow ,Color.blue,Color.red, Color.white, Color.deeppink]
 var blocks = []
 var ball = null
 var ball_powerup = null
