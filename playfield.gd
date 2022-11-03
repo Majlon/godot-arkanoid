@@ -29,7 +29,7 @@ func _ready():
 	
 	ball = ball_scene.instance()
 	var paddle_position = $Paddle.position
-	ball.position = Vector2(paddle_position.x  + 40,paddle_position.y - 30)	
+	ball.position = Vector2(paddle_position.x ,paddle_position.y - 30)	
 	ball.connect("bounce",self,"_on_Ball_bounce")
 	add_child(ball)
 	
@@ -68,9 +68,21 @@ func _on_Ball_bounce(ball, bouncedFrom):
 		print("Game Over!!")
 	elif bouncedFrom.collider is Paddle:
 		# check for paddle related effects
-		print("Boink !")
-		collider_normal = collider_normal.rotated(0.2)
+		print("Boink, :" + str(bouncedFrom.collider.movement_x))
+		var positionDelta = bouncedFrom.collider.position.x - ball.position.x
 		
+		if positionDelta > 0:
+			if bouncedFrom.collider.movement_x > 0:
+				collider_normal = collider_normal.rotated(-0.3)
+			elif bouncedFrom.collider.movement_x < 0:
+				collider_normal = collider_normal.rotated(-0.2)
+		elif positionDelta < 0:
+			if bouncedFrom.collider.movement_x > 0:
+				collider_normal = collider_normal.rotated(0.3)
+			elif bouncedFrom.collider.movement_x < 0:
+				collider_normal = collider_normal.rotated(0.2)
+
+			
 	if shouldBounce:
 		ball.setVelocity(ball.velocity.bounce(collider_normal))
 
@@ -100,6 +112,6 @@ func _on_Paddle_paddle_moves(paddle, velocity):
 		ball.position += velocity
 
 func _process(delta):
-	if Input.is_action_pressed("action"):
+	if (Input.is_action_pressed("action") && !game_in_progress):
 		game_in_progress = true
 		ball.setVelocity(Vector2(0,-300))
