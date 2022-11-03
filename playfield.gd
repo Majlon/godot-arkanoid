@@ -68,12 +68,9 @@ func _on_Ball_bounce(ball, bouncedFrom):
 		print("Game Over!!")
 	elif bouncedFrom.collider is Paddle:
 		# check for paddle related effects
-		print("Boink, :" + str(bouncedFrom.collider.movement_x))
-		if bouncedFrom.collider.movement_x > 0:
-			collider_normal = collider_normal.rotated(0.2)
-		elif bouncedFrom.collider.movement_x < 0:
-			collider_normal = collider_normal.rotated(-0.2)
-			
+		print("Boink !")
+		collider_normal = collider_normal.rotated(0.2)
+		
 	if shouldBounce:
 		ball.setVelocity(ball.velocity.bounce(collider_normal))
 
@@ -103,6 +100,6 @@ func _on_Paddle_paddle_moves(paddle, velocity):
 		ball.position += velocity
 
 func _process(delta):
-	if (Input.is_action_pressed("action") && !game_in_progress):
+	if Input.is_action_pressed("action"):
 		game_in_progress = true
 		ball.setVelocity(Vector2(0,-300))
